@@ -1,15 +1,34 @@
 $(document).ready(function() {
 
-    numbers = nRandMinToMax(5,1,500);
-    alert('ricorda: ' + numbers);
+    var numbers = nRandMinToMax(5,1,500);
+
+    // alert('ricorda: ' + numbers);
+
+    // parte bonus al posto di alert
+    $('body').append('<h1></h1>');
+    $('h1').text('ricorda: ' + numbers);
+    // /parte bonus al posto di alert
     
+    // aggiunta legata al bonus
+    var cancelled;
+    function endText() {
+        cancelled = setTimeout(cancelText,29000);
+    };
+    endText();
+    // /aggiunta legata al bonus
     var start;
     function startFun() {
-        start = setTimeout(userPrompt,3000,numbers);
+        start = setTimeout(userPrompt,30000,numbers);
     };
     startFun();
 
 });
+
+// aggiunta legata al bonus
+function cancelText() {
+    $('h1').text('');
+}
+// /aggiunta legata al bonus
 
 function userPrompt(array) {
     var howMany = array.length;
