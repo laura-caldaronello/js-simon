@@ -1,3 +1,5 @@
+// al punto a cui sono arrivata si hanno 6 secondi (10000 - 4000) per scrivere tutti gli input (posso poi aggiornarlo); se non lo si fa si accavalleranno tutti i prompt successivi e non si avranno i risultati in console (non funziona l'esercizio)
+
 $(document).ready(function() {
 
     // predispongo parte scrittura
@@ -9,15 +11,14 @@ $(document).ready(function() {
     var numbers = [];
 
     for (var i = 0; i < numbersTot.length; i++) {
-        var start1, start2, start3;
-        function startTextAppear() {
+        var start1, start2, start3, start4;
+        function startAll() {
             start1 = setTimeout(textAppear,10000 * i,numbers,numbersTot,'text',i);
             start2 = setTimeout(textDisappear,(10000 * i) + 3000,'text');
             start3 = setTimeout(inputFun,(10000 * i) + 4000,numbers);
         };
-        startTextAppear();
+        startAll();
     }
-
 
 });
 
@@ -26,8 +27,6 @@ function textAppear(arraySmall,arrayBig,idElement,ind) {
         arraySmall[ind] = arrayBig[j];
     }
     document.getElementById(idElement).innerHTML = 'ricorda: ' + arraySmall;
-    console.log(arraySmall);
-    console.log('inserire numero e controllare');
 }
 function textDisappear(idElement) {
     document.getElementById(idElement).innerHTML = '';
@@ -37,7 +36,7 @@ function inputFun(arraySmall) {
     var user = [];
     var ok = [];
     for (var i = 0; i < howMany; i++) {
-        user[i] = prompt('inserire numero');
+        user[i] = prompt('inserire numeri (hai 6 secondi per inserirli tutti)');
         var is = whereIsInArray(user[i],arraySmall);
         if (is != -1) {
             ok.push(user[i]);
