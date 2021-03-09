@@ -1,50 +1,52 @@
 $(document).ready(function() {
 
-    var numbers = nRandMinToMax(5,1,500);
+    // predispongo parte scrittura
+    $('body').append('<h1 id=\'text\'></h1>');
+    // /predispongo parte scrittura
 
-    // alert('ricorda: ' + numbers);
+    var numbersTot = nRandMinToMax(5,1,500);
+    console.log(numbersTot);
+    var numbers = [];
 
-    // parte bonus al posto di alert
-    $('body').append('<h1></h1>');
-    $('h1').text('ricorda: ' + numbers);
-    // /parte bonus al posto di alert
-    
-    // aggiunta legata al bonus
-    var cancelled;
-    function endText() {
-        cancelled = setTimeout(cancelText,29000); /* metto 29sec altrimenti mi partono subito i prompt prima della cancellazione del testo */
-    };
-    endText();
-    // /aggiunta legata al bonus
+    for (var i = 0; i < numbersTot.length; i++) {
+        var start1, start2, start3;
+        function startTextAppear() {
+            start1 = setTimeout(textAppear,10000 * i,numbers,numbersTot,'text',i);
+            start2 = setTimeout(textDisappear,(10000 * i) + 3000,'text');
+            start3 = setTimeout(inputFun,(10000 * i) + 4000,numbers);
+        };
+        startTextAppear();
+    }
 
-    var start;
-    function startFun() {
-        start = setTimeout(userPrompt,30000,numbers);
-    };
-    startFun();
 
 });
 
-// aggiunta legata al bonus
-function cancelText() {
-    $('h1').text('');
+function textAppear(arraySmall,arrayBig,idElement,ind) {
+    for (var j = 0; j <= ind; j++) {
+        arraySmall[ind] = arrayBig[j];
+    }
+    document.getElementById(idElement).innerHTML = 'ricorda: ' + arraySmall;
+    console.log(arraySmall);
+    console.log('inserire numero e controllare');
 }
-// /aggiunta legata al bonus
-
-function userPrompt(array) {
-    var howMany = array.length;
+function textDisappear(idElement) {
+    document.getElementById(idElement).innerHTML = '';
+}
+function inputFun(arraySmall) {
+    var howMany = arraySmall.length;
     var user = [];
     var ok = [];
     for (var i = 0; i < howMany; i++) {
         user[i] = prompt('inserire numero');
-        var is = whereIsInArray(user[i],array);
+        var is = whereIsInArray(user[i],arraySmall);
         if (is != -1) {
             ok.push(user[i]);
         }
     }
     
     console.log('hai indovinato ' + ok.length + ' numeri: ' + ok);
-};
+
+}
 
 function whereIsInArray(value,array) {
     var index = -1;
