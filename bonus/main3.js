@@ -1,37 +1,58 @@
 $(document).ready(function() {
-
+    
     // predispongo parte scrittura
     $('body').append('<h1 id=\'text\'></h1>');
+    document.getElementById('text').innerHTML = 'ricorda: ';
     // /predispongo parte scrittura
-
+    
     var numbers = nRandMinToMax(5,1,500);
     console.log(numbers);
 
-    // prima cosa: deve comparire il primo testo
-    document.getElementById('text').innerHTML = 'ricorda: ' + numbers;
-
-    // dopo un tot il testo deve scomparire
-    var s = setTimeout(function() {
-        document.getElementById('text').innerHTML = '';
-        clearTimeout(s);
-    },3000);
-
-    // successivamente deve apparire il prompt (non lo metto con la function precedente perchè altrimenti appare prima il prompt)
-    var t = setTimeout(function() {
-        var user = [];
-        var i = 0;
-        do {
-            user[i] = parseInt(prompt('inserisci numero'));
-            i++;
-        } while (i < numbers.length && user[i - 1] == numbers[i - 1]);
-        if (i != numbers.length) {
-            alert('hai perso!');
+    var currentNumbersArray = [];
+    for (var j = 0; j < numbers.length; j++) {
+        var currentNumbers = [];
+        for (var i = 0; i <= j; i++) {
+            currentNumbers[i] = numbers[i];
         }
-        else {
-            alert('hai vinto! Livello successivo...')
+        currentNumbersArray[j] = currentNumbers;
+    }
+    console.log(currentNumbersArray);
+
+    // predispongo un orologio
+    $('body').append('<h1 id=\'time1\'></h1>');
+    $('body').append('<h1 id=\'time2\'></h1>');
+    $('body').append('<h1 id=\'time3\'></h1>');
+
+    document.getElementById('time1').innerHTML = 'tempo reale (secondi): ';
+    document.getElementById('time2').innerHTML = 'contatore 10 secondi: ';
+    document.getElementById('time3').innerHTML = 'quanti giri da 10 secondi sono stati completati: ';
+
+    var c = 10;
+    var t = 0;
+    var q = 0;
+    var seconds = setInterval(function() {
+        document.getElementById('time1').innerHTML = 'tempo reale (secondi): ' + t;
+        document.getElementById('time2').innerHTML = 'contatore 10 secondi: ' + c;
+        document.getElementById('time3').innerHTML = 'quanti giri da 10 secondi sono stati completati: ' + q;
+
+        c--;
+        t++;
+
+        if (c == 0) {
+            c = 10;
+            q++;
         }
-        clearTimeout(t);
-    },4000);
+
+        
+        if (t == 10 * j || j == 0) {
+                document.getElementById('text').innerHTML = 'ricorda: ' + currentNumbersArray[];
+        }
+        else if (t == (10 * j) + 5 || t == 5) {
+                document.getElementById('text').innerHTML = 'ricorda: ';
+        }
+                
+    },1000);
+            
 
 });
 
