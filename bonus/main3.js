@@ -43,12 +43,11 @@ $(document).ready(function() {
             q++;
         }
 
-        
-        if (t == 10 * j || j == 0) {
-                document.getElementById('text').innerHTML = 'ricorda: ' + currentNumbersArray[];
+        if (c >= 5) {
+            document.getElementById('text').innerHTML = 'ricorda: ' + currentNumbersArray[q];
         }
-        else if (t == (10 * j) + 5 || t == 5) {
-                document.getElementById('text').innerHTML = 'ricorda: ';
+        else if (c < 5) {
+            document.getElementById('text').innerHTML = 'ricorda: ';
         }
                 
     },1000);
