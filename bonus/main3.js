@@ -46,29 +46,21 @@ $(document).ready(function() {
         if (c >= 5) {
             document.getElementById('text').innerHTML = 'ricorda: ' + currentNumbersArray[q];
         }
-        else if (c < 5) {
-            document.getElementById('text').innerHTML = 'ricorda: ';
+        else if (c == 4) {
+            document.getElementById('text').innerHTML = '';
+            $('#text').append('<input type="text"></input>');
+        }
+        else if (c == 1) {
+            if ($('#text input').val() != String(currentNumbersArray[q])) {
+                alert('Hai perso!');
+                clearInterval(seconds);
+            }
         }
                 
     },1000);
             
 
 });
-
-function whereIsInArray(value,array) {
-    var index = -1;
-    var i = 0;
-    while (i < array.length) {
-        if (array[i] == value) {
-            index = i;
-            break;
-        }
-        else {
-            i++;
-        }
-    }
-    return index;
-};
 
 function nRandMinToMax(n,min,max) {
 
