@@ -1,0 +1,79 @@
+/* selettori preliminari */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: lavender;
+}
+
+.container {
+    margin: 0 auto;
+    margin-top: 50px;
+    height: 80%;
+    width: 80%;
+    background-color: lightpink;
+    text-align: center;
+}
+
+/* /selettori preliminari */
+
+/* selettori generici */
+
+
+
+/* /selettori generici */
+
+/* selettori specifici */
+
+#titolo {
+    padding: 10px;
+}
+
+#regole {
+    padding: 10px;
+}
+
+.button-container {
+    padding: 10px;
+}
+.button-container > button {
+    height: 100px;
+    width: 100px;
+    border: none;
+    box-shadow: 2px 2px 2px black;
+}
+.button-container > button:focus,
+button.active {
+    outline: none;
+    position: relative;
+    top: 2px;
+    left: 2px;
+    box-shadow: none;
+}
+.button-container #btn1 {
+    background-color: seagreen;
+}
+.button-container #btn2 {
+    background-color: maroon;
+}
+.button-container #btn3 {
+    background-color: navy;
+}
+.button-container #btn4 {
+    background-color: palevioletred;
+}
+.button-container #btn5 {
+    background-color: purple;
+}
+
+#info {
+    padding: 10px;
+}
+
+/* /selettori specifici */
