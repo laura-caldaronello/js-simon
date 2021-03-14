@@ -1,16 +1,18 @@
 $(document).ready(function() {
 
+    var t2 = 10;
     var param = 0;
     var maxParam = 5;
     var seq = nRandMinToMax(maxParam,param,maxParam - 1);
     console.log(seq);
-    sequence(param,maxParam,seq);
+
+    sequence(param,maxParam,seq,t2);
     // cliccati(seq);
     
 });
 
 // utilities
-function sequence(t,max,sequenza) {setInterval(function() {
+function sequence(t,max,sequenza,t2) {setInterval(function() {
     if (t < max) { /* creazione sequenza */
         if (t > 0) {
             $('.button-container').children().eq(sequenza[t - 1]).removeClass('active');
@@ -21,34 +23,45 @@ function sequence(t,max,sequenza) {setInterval(function() {
     }
     else if (max <= t && t < max + 10) { /* controllo sequenza */
         $('.button-container').children().eq(sequenza[t - 1]).removeClass('active');
-        $('#info1').html('ciao');
 
+        $('#info1').html('Hai ancora ' + t2 + ' secondi');
+        t2--;
 
+        if (max == t) {
+            var c = 0;
+            var v = 0;
+        }
+        cliccati(sequenza,c,v);
 
         console.log(t);
         t++;
     }
     else {
-        $('#info1').html('');
+        $('#info1').html('Hai perso!');
         clearInterval(sequence);
+        location.reload();
     }
 },1000)};
 
-// da riguardare qui: separare sequenza da verifica?
-// function cliccati(sequenza) {setTimeout(function() {
-//     var bool = 0;
-//     for (var i = 0; i < sequenza.length; i++) {
-//         $('.btn-container').children().eq(sequenza[i]).click(function() {
-//             bool = i + 1;
-//         });    
-//     }
-//     if (bool == sequenza.length) {
-//         alert('hai vinto');
-//     }
-//     else {
-//         alert('hai perso');
-//     }
-// },10000);};
+// functions
+function cliccati(sequenza,c,v) {
+    $('button').click(function() {
+        if (c < sequenza.length) {
+            if ($(this).index() == sequenza[c]) {
+                v++;
+            }
+            else {
+                $('#info1').html('Hai perso!');
+                location.reload();
+            }
+            c++;
+        }
+        if (c == sequenza.length && v == sequenza.length) {
+            $('#info1').html('Hai vinto!');
+            location.reload();
+        }
+    });
+};
 
 function nRandMinToMax(n,min,max) {
     
