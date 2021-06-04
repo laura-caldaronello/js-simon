@@ -7,7 +7,7 @@ $(document).ready(function() {
     console.log(seq);
 
     sequence(param,maxParam,seq,t2);
-    // cliccati(seq);
+    cliccati(seq);
     
 });
 
@@ -22,6 +22,7 @@ function sequence(t,max,sequenza,t2) {setInterval(function() {
         t++;
     }
     else if (max <= t && t < max + 10) { /* controllo sequenza */
+
         $('.button-container').children().eq(sequenza[t - 1]).removeClass('active');
 
         $('#info1').html('Hai ancora ' + t2 + ' secondi');
